@@ -10,9 +10,11 @@
     "test": "jest"
   },
   "dependencies": {
+    "@hugeicons/core-free-icons": "^1.0.16",
     "@hugeicons/react-native": "^1.0.7",
     "@react-native-async-storage/async-storage": "^2.2.0",
     "@react-native-community/checkbox": "^0.5.20",
+    "@react-native-community/datetimepicker": "^8.4.4",
     "@react-native-cookies/cookies": "^6.2.1",
     "@react-native-picker/picker": "^2.11.1",
     "@react-native/new-app-screen": "0.80.2",
@@ -30,9 +32,11 @@
     "react-native-gesture-handler": "^2.27.2",
     "react-native-inappbrowser-reborn": "^3.7.0",
     "react-native-linear-gradient": "^2.8.3",
+    "react-native-paper": "^5.14.5",
     "react-native-reanimated": "^3.6.2",
     "react-native-safe-area-context": "^5.5.2",
     "react-native-screens": "^4.13.1",
+    "react-native-svg": "^15.3.0",
     "react-native-url-polyfill": "^2.0.0",
     "react-native-vector-icons": "^10.3.0",
     "react-native-webview": "^13.15.0"

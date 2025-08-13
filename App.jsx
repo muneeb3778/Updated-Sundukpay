@@ -5,15 +5,19 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Home from './Allcomponents/Home';
-import PotBalance from './Allcomponents/PotBalance';
+import { HugeiconsIcon } from '@hugeicons/react-native';
+import Addpot from './Allcomponents/Addpot';
+import PotsDetails from './Allcomponents/PotsDetails';
+import Pot from './Allcomponents/Pot';
 
-// Hugeicons
+// Import free icons
 import {
-  Home04Icon,
-  Analytics02Icon,
-  Payment01Icon,
-  MoreHorizontalIcon
-} from '@hugeicons/react-native';
+  HomeIcon,
+  Analytics01Icon,
+  ArrowReloadHorizontalIcon,
+  MoreHorizontalIcon,
+  MoneyBag01Icon
+} from '@hugeicons/core-free-icons';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -38,17 +42,20 @@ function App() {
             tabBarIcon: ({ focused }) => {
               let IconComponent;
 
+              // ✅ Assign correct icon per route
               if (route.name === 'Home') {
-                IconComponent = Home04Icon;
+                IconComponent = HomeIcon;
               } else if (route.name === 'Pots') {
-                IconComponent = Payment01Icon;
+                IconComponent = MoneyBag01Icon;
               } else if (route.name === 'Analytics') {
-                IconComponent = Analytics02Icon;
+                IconComponent = Analytics01Icon;
               } else if (route.name === 'Payment') {
-                IconComponent = Payment01Icon; // ✅ added this case
+                IconComponent =  ArrowReloadHorizontalIcon;
               } else if (route.name === 'More') {
                 IconComponent = MoreHorizontalIcon;
               }
+
+              if (!IconComponent) return null;
 
               return (
                 <View style={{ alignItems: 'center', height: '100%', position: 'relative' }}>
@@ -56,17 +63,20 @@ function App() {
                     <View
                       style={{
                         position: 'absolute',
-                        top: 0,
-                        width: 30,
+                        top:-7,
+                        width: 40,
                         height: 2.5,
                         backgroundColor: '#C7A348',
                         borderRadius: 1,
                       }}
                     />
                   )}
-                  {IconComponent ? (
-                    <IconComponent size={24} color={focused ? '#C7A348' : 'gray'} />
-                  ) : null}
+                  <HugeiconsIcon
+                    icon={IconComponent}
+                    size={24}
+                    color={focused ? '#C7A348' : 'gray'}
+                    strokeWidth={1.5}
+                  />
                 </View>
               );
             },
@@ -87,9 +97,9 @@ function App() {
             tabBarInactiveTintColor: 'gray',
           })}
         >
-          <Tab.Screen name="Home" component={Home} />
-          <Tab.Screen name="Analytics" component={Home} />
-          <Tab.Screen name="Pots" component={PotBalance} />
+          <Tab.Screen name="Home" component={Addpot} />
+          <Tab.Screen name="Analytics" component={Pot} />
+          <Tab.Screen name="Pots" component={PotsDetails} />
           <Tab.Screen name="Payment" component={Home} />
           <Tab.Screen name="More" component={Home} />
         </Tab.Navigator>
