@@ -1,9 +1,17 @@
 import React from 'react';
-import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Image,Dimensions } from 'react-native';
 import { ProgressBar } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { HugeiconsIcon } from '@hugeicons/react-native';
+import { ArrowUp02Icon, ArrowDown02Icon, Pen01Icon,ArrowUpRight03Icon } from "@hugeicons/core-free-icons";
+import { useNavigation } from '@react-navigation/native';
+
+const { width } = Dimensions.get('window')
 
 const Pot= function () {
+  
+  const navigation = useNavigation();
+
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView showsVerticalScrollIndicator={false}>
@@ -30,44 +38,81 @@ const Pot= function () {
 
                 <View style={styles.potsGrid}>
                     {/* Vacation Pot */}
-                    <TouchableOpacity style={styles.potCard}>
+                    <TouchableOpacity style={styles.potCard} onPress={()=>{navigation.navigate("PotsDetails")}}>
                         <View className="flex-row items-center justify-between">
+                          <View className="flex-row items-center gap-[2%]">
+                        <View style={styles.iconWrapper}>
                         <Image source={require('../assets/addpotimages/aeroplaneimg.png')} style={styles.potImage} />
-                        <Text style={styles.potTitle}>Vacation</Text>
                         </View>
-                        <Text style={styles.potAmount}>1,12,500</Text>
-                        <Text style={styles.potGoal}>of 1,50,000</Text>
+                        <Text style={styles.potTitle}>Vacation</Text>
+                          </View>
+                          <HugeiconsIcon
+                          icon={ArrowUpRight03Icon}
+                          size={18}
+                          color={"rgba(199, 163, 72, 0.5)"}
+                          />                        
+                        </View>
+                        <View>
+                        <View className="flex-row justify-between">
+                        <Text style={styles.potAmount}><Text style={styles.potGoal}>AED</Text> 1,12,500</Text>
+                        <Text style={styles.potAmount}><Text style={styles.potGoal}>of AED</Text> 1,50,000</Text>
+                        </View>
                         <ProgressBar progress={0.75} color="#C7A348" style={styles.progress} />
                         <Text style={styles.progressText}>75.0% Complete</Text>
+                        </View>
                     </TouchableOpacity>
 
                     {/* Car Pot */}
-                    <TouchableOpacity style={styles.potCard}>
+                    <TouchableOpacity style={styles.potCard} onPress={()=>{navigation.navigate("PotsDetails")}}>
                         <View className="flex-row items-center justify-between">
-                        <Image source={require('../assets/addpotimages/carimg.png')} style={styles.potImage} />
+                          <View className="flex-row items-center gap-[2%]">
+                            <View style={styles.iconWrapper}>
+                              <Image source={require('../assets/addpotimages/carimg.png')} style={styles.potImage} />
+                            </View>
                         <Text style={styles.potTitle}>Car</Text>
                         </View>
-                        <Text style={styles.potAmount}>5000</Text>
-                        <Text style={styles.potGoal}>of 50,000</Text>
+                          <HugeiconsIcon
+                          icon={ArrowUpRight03Icon}
+                          size={18}
+                          color={"rgba(199, 163, 72, 0.5)"}
+                          /> 
+                        </View>
+                        <View className="flex-row justify-between">
+                        <Text style={styles.potAmount}><Text style={styles.potGoal}>AED</Text> 5000</Text>
+                        <Text style={styles.potAmount}><Text style={styles.potGoal}>of AED</Text> 50,000</Text>
+                        </View>
                         <ProgressBar progress={0.10} color="#C7A348" style={styles.progress} />
                         <Text style={styles.progressText}>10.0% Complete</Text>
                     </TouchableOpacity>
 
                     {/* Home Pot */}
-                    <TouchableOpacity style={styles.potCard}>
+                    <TouchableOpacity style={styles.potCard} onPress={()=>{navigation.navigate("PotsDetails")}}>
                         <View className="flex-row items-center justify-between">
-                        <Image source={require('../assets/addpotimages/Homeimg.png')} style={styles.potImage} />
+                          <View className="flex-row items-center gap-[2%]">
+                            <View style={styles.iconWrapper}>
+                          <Image source={require('../assets/addpotimages/Homeimg.png')} style={styles.potImage} />
+                            </View>
                         <Text style={styles.potTitle}>Home</Text>
+                          </View>
+                          <HugeiconsIcon
+                          icon={ArrowUpRight03Icon}
+                          size={18}
+                          color={"rgba(199, 163, 72, 0.5)"}
+                          /> 
                         </View>
-                        <Text style={styles.potAmount}>20,000</Text>
-                        <Text style={styles.potGoal}>of 100,000</Text>
+                        <View className="flex-row justify-between">
+                        <Text style={styles.potAmount}><Text style={styles.potGoal}>AED</Text> 20,000</Text>
+                        <Text style={styles.potAmount}><Text style={styles.potGoal}>of AED</Text> 1,00,000</Text>
+                        </View>
                         <ProgressBar progress={0.20} color="#C7A348" style={styles.progress} />
                         <Text style={styles.progressText}>20.0% Complete</Text>
                     </TouchableOpacity>
 
                     {/* Add Pot */}
-                    <TouchableOpacity style={[styles.potCard, styles.addPot]}>
+                    <TouchableOpacity style={[styles.potCard, styles.addPot]} onPress={()=>{navigation.navigate("Addpot")}}>
+                        <View style={styles.iconWrapper}>
                         <Text style={styles.addPotPlus}>+</Text>
+                        </View>
                         <Text style={styles.potTitle}>Add Pot</Text>
                     </TouchableOpacity>
                 </View>
@@ -86,7 +131,14 @@ const Pot= function () {
                         <Text style={styles.txnDate}>22 July 9:34 pm</Text>
                     </View>
                     </View>
-                    <Text style={[styles.txnAmount, { color: 'green' }]}>+ AED 280</Text>
+                    <View className="flex-row">
+                    <Text style={[styles.txnAmount]}><Text style={[styles.txnAmountAED]}>AED</Text> 280</Text>
+                    <HugeiconsIcon
+                    icon={ArrowDown02Icon}
+                    size={18}
+                    color={"green"}
+                    />
+                    </View>
                 </View>
 
                 <View style={styles.transactionRow}>
@@ -97,7 +149,15 @@ const Pot= function () {
                         <Text style={styles.txnDate}>22 July 10:40 pm</Text>
                     </View>
                     </View>
-                    <Text style={[styles.txnAmount, { color: 'red' }]}>- AED 200</Text>
+                    <View className="flex-row">
+                    <Text style={[styles.txnAmount,]}><Text style={[styles.txnAmountAED]}>AED</Text> 200</Text>
+                    <HugeiconsIcon
+                    icon={ArrowUp02Icon}
+                    size={18}
+                    color={"red"}
+                    />
+                    </View>
+
                 </View>
 
             </ScrollView>
@@ -170,10 +230,13 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     elevation: 2,
     marginBottom: 12,
+    gap:3,
+    borderWidth: 1,
+   borderColor: 'rgba(199, 163, 72, 0.5)'
   },
   potImage: {
-    width: 40,
-    height: 40,
+    width: 50,
+    height: 50,
     marginBottom: 6,
   },
   potTitle: {
@@ -182,12 +245,12 @@ const styles = StyleSheet.create({
     color: '#000',
   },
   potAmount: {
-    fontSize: 16,
+    fontSize: 12,
     fontWeight: '700',
     color: '#000',
   },
   potGoal: {
-    fontSize: 12,
+    fontSize: 8,
     color: '#999',
   },
   progress: {
@@ -197,7 +260,7 @@ const styles = StyleSheet.create({
   },
   progressText: {
     fontSize: 12,
-    color: '#666',
+    color: '#C7A348',
     marginTop: 4,
   },
 
@@ -206,9 +269,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   addPotPlus: {
-    fontSize: 32,
+    fontSize: 50,
+    textAlign:'center',
     color: '#C7A348',
     fontWeight: '700',
+    top:-4
   },
 
   viewAll: {
@@ -225,6 +290,16 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0.5,
     borderBottomColor: '#eee',
   },
+iconWrapper: {
+width: width / 5.5 - 11,
+height: width / 5.5 - 11,
+margin: 5,
+alignItems: 'center',
+justifyContent: 'center',
+borderRadius: 50,
+borderWidth: 1,
+borderColor: 'rgba(199, 163, 72, 0.5)',
+},
   txnIcon: {
     width: 40,
     height: 40,
@@ -240,7 +315,11 @@ const styles = StyleSheet.create({
     color: '#888',
   },
   txnAmount: {
-    fontSize: 14,
+    fontSize: 16,
+    fontWeight: '600',
+  },
+    txnAmountAED: {
+    fontSize: 9,
     fontWeight: '600',
   },
 });

@@ -21,12 +21,28 @@ import {
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
+const PotsStackNav = createNativeStackNavigator();
 
 function App() {
+  
+function PotsStack() {
   return (
+    <PotsStackNav.Navigator screenOptions={{ headerShown: false }}>
+      <PotsStackNav.Screen name="PotsMain" component={Pot} />
+      <PotsStackNav.Screen name="PotsDetails" component={PotsDetails} />
+      <PotsStackNav.Screen name="Addpot" component={Addpot} />
+    </PotsStackNav.Navigator>
+  );
+}
+
+
+  return (
+
+    
     <SafeAreaProvider>
       <NavigationContainer>
         <Tab.Navigator
+        initialRouteName='Pots'
           screenOptions={({ route }) => ({
             headerShown: false,
             tabBarStyle: {
@@ -95,11 +111,12 @@ function App() {
             ),
             tabBarActiveTintColor: '#ff5733',
             tabBarInactiveTintColor: 'gray',
+            tabBarHideOnKeyboard:true
           })}
         >
-          <Tab.Screen name="Home" component={Addpot} />
-          <Tab.Screen name="Analytics" component={Pot} />
-          <Tab.Screen name="Pots" component={PotsDetails} />
+          <Tab.Screen name="Home" component={Home} />
+          <Tab.Screen name="Analytics" component={Home} />
+          <Tab.Screen name="Pots" component={PotsStack} />
           <Tab.Screen name="Payment" component={Home} />
           <Tab.Screen name="More" component={Home} />
         </Tab.Navigator>
